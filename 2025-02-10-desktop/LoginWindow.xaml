@@ -1,0 +1,18 @@
+﻿<Window x:Class="_2025_02_10_desktop.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:_2025_02_10_desktop"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="300" Width="400">
+    <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="10">
+        <Label FontSize="14">Log in or register</Label>
+        <Label>Name</Label>
+        <TextBox x:Name="nameField"/>
+        <Label>Password</Label>
+        <PasswordBox x:Name="passwordField"/>
+        <Button Grid.Column="2" Margin="0,0,0,10" x:Name="loginButton" Click="loginButton_Click">Log in</Button>
+        <Button Grid.Column="2" x:Name="registerButton" Click="registerButton_Click">Register</Button>
+    </StackPanel>
+</Window>
