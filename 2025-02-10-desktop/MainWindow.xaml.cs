@@ -30,6 +30,19 @@ namespace _2025_02_10_desktop
             try
             {
                 usersTable.DataContext = await API.GetUsers();
+                peopleTable.DataContext = await API.GetPeople();
+                if (API.ActiveUser != null)
+                {
+                    createForm.IsEnabled = true;
+                    loginName.Content = API.ActiveUser.Name;
+                    loginButton.Header = "_Logout";
+                }
+                else
+                {
+                    createForm.IsEnabled = false;
+                    loginName.Content = "";
+                    loginButton.Header = "_Login or register";
+                }
             }
             catch (Exception e)
             {
@@ -38,7 +51,27 @@ namespace _2025_02_10_desktop
         }
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
-            new LoginWindow().ShowDialog();
+            if (API.ActiveUser == null)
+            {
+                new LoginWindow().ShowDialog();
+            }
+            else
+            {
+                API.ActiveUser = null;
+            }
+            LoadData();
+        }
+        private async void createPersonButton_Click(object sender, RoutedEventArgs e)
+        {
+            await API.NewPerson(nameField.Text, int.Parse(ageField.Text));
+            LoadData();
+        }
+        private async void deletePersonButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button s = sender as Button;
+            Person person = s.DataContext as Person;
+            await API.DeletePerson(person.id);
+            LoadData();
         }
     }
 }

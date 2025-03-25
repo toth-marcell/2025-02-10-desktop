@@ -18,12 +18,23 @@
         </Grid.ColumnDefinitions>
         <DockPanel Grid.ColumnSpan="2">
             <Menu>
+                <Label x:Name="loginName"></Label>
                 <MenuItem Header="_Login or register" x:Name="loginButton" Click="loginButton_Click"/>
             </Menu>
         </DockPanel>
         <DataGrid ItemsSource="{Binding}" x:Name="usersTable" Grid.Row="1" Grid.RowSpan="2"/>
-        <DataGrid ItemsSource="{Binding}" x:Name="peopleTable" Grid.Row="1" Grid.Column="1"/>
-        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" IsEnabled="False">
+        <DataGrid ItemsSource="{Binding}" x:Name="peopleTable" Grid.Row="1" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="deletePersonButton" Click="deletePersonButton_Click">Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" x:Name="createForm">
             <Label FontSize="14">Create new person</Label>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -33,13 +44,13 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel>
                     <Label>Name</Label>
-                    <TextBox/>
+                    <TextBox x:Name="nameField"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1">
                     <Label>Age</Label>
-                    <TextBox/>
+                    <TextBox x:Name="ageField"/>
                 </StackPanel>
-                <Button Grid.Column="2">Create</Button>
+                <Button Grid.Column="2" x:Name="createPersonButton" Click="createPersonButton_Click">Create</Button>
             </Grid>
         </StackPanel>
     </Grid>

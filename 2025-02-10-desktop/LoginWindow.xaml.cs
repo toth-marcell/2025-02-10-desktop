@@ -29,6 +29,7 @@ namespace _2025_02_10_desktop
             try
             {
                 await API.Login(nameField.Text, passwordField.Password);
+                DialogResult = true;
             }
             catch (Exception ex)
             {
@@ -36,9 +37,17 @@ namespace _2025_02_10_desktop
             }
         }
 
-        private void registerButton_Click(object sender, RoutedEventArgs e)
+        private async void registerButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                await API.Register(nameField.Text, passwordField.Password);
+                DialogResult = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
         }
     }
 }
