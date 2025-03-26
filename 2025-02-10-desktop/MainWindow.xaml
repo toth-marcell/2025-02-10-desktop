@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2025_02_10_desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="A great program" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -18,17 +18,20 @@
         </Grid.ColumnDefinitions>
         <DockPanel Grid.ColumnSpan="2">
             <Menu>
-                <Label x:Name="loginName"></Label>
                 <MenuItem Header="_Login or register" x:Name="loginButton" Click="loginButton_Click"/>
+                <Label x:Name="loginName"></Label>
             </Menu>
         </DockPanel>
         <DataGrid ItemsSource="{Binding}" x:Name="usersTable" Grid.Row="1" Grid.RowSpan="2"/>
         <DataGrid ItemsSource="{Binding}" x:Name="peopleTable" Grid.Row="1" Grid.Column="1">
             <DataGrid.Columns>
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Actions">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button x:Name="deletePersonButton" Click="deletePersonButton_Click">Delete</Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="deletePersonButton" Click="deletePersonButton_Click" Padding="2">Delete</Button>
+                                <Button x:Name="editPersonButton" Click="editPersonButton_Click" Margin="10,0,0,0" Padding="2">Edit</Button>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -50,8 +53,9 @@
                     <Label>Age</Label>
                     <TextBox x:Name="ageField"/>
                 </StackPanel>
-                <Button Grid.Column="2" x:Name="createPersonButton" Click="createPersonButton_Click">Create</Button>
+                <Button Grid.Column="2" x:Name="createPersonButton" Click="createPersonButton_Click" Margin="10">Create</Button>
             </Grid>
+            <Button Margin="25" Width="120" x:Name="deleteAllButton" Click="deleteAllButton_Click">Delete all</Button>
         </StackPanel>
     </Grid>
 </Window>

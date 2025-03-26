@@ -61,6 +61,25 @@ namespace _2025_02_10_desktop
         {
             await http.DeleteAsync(URL + $"/person?id={id}");
         }
+        public static async Task DeleteAllPeople()
+        {
+            await http.DeleteAsync(URL + $"/deleteall");
+        }
+        public static async Task EditPerson(int id, string name, int age)
+        {
+            string json = JsonConvert.SerializeObject(new Person(name, age) { id = id });
+            HttpContent body = new StringContent(json, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await http.PutAsync(URL + "/person", body);
+            string responseBody = await response.Content.ReadAsStringAsync();
+            try
+            {
+                response.EnsureSuccessStatusCode();
+            }
+            catch
+            {
+                throw new Exception(JsonConvert.DeserializeObject<APIError>(responseBody).Msg);
+            }
+        }
     }
     public class User
     {

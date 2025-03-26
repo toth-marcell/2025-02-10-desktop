@@ -33,13 +33,11 @@ namespace _2025_02_10_desktop
                 peopleTable.DataContext = await API.GetPeople();
                 if (API.ActiveUser != null)
                 {
-                    createForm.IsEnabled = true;
-                    loginName.Content = API.ActiveUser.Name;
+                    loginName.Content = "Logged in as " + API.ActiveUser.Name;
                     loginButton.Header = "_Logout";
                 }
                 else
                 {
-                    createForm.IsEnabled = false;
                     loginName.Content = "";
                     loginButton.Header = "_Login or register";
                 }
@@ -71,6 +69,20 @@ namespace _2025_02_10_desktop
             Button s = sender as Button;
             Person person = s.DataContext as Person;
             await API.DeletePerson(person.id);
+            LoadData();
+        }
+
+        private async void deleteAllButton_Click(object sender, RoutedEventArgs e)
+        {
+            await API.DeleteAllPeople();
+            LoadData();
+        }
+
+        private void editPersonButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button s = sender as Button;
+            Person person = s.DataContext as Person;
+            new EditWindow(person).ShowDialog();
             LoadData();
         }
     }
