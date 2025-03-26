@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_2025_02_10_desktop"
         mc:Ignorable="d"
-        Title="Log in or register" Height="300" Width="400">
+        Title="Log in or register" Height="300" Width="400"
+        WindowStartupLocation="CenterOwner">
     <StackPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Margin="10">
         <Label FontSize="14">Log in or register</Label>
         <Label>Name</Label>

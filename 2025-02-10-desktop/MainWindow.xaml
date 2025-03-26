@@ -23,12 +23,15 @@
             </Menu>
         </DockPanel>
         <DataGrid ItemsSource="{Binding}" x:Name="usersTable" Grid.Row="1" Grid.RowSpan="2"/>
-        <DataGrid ItemsSource="{Binding}" x:Name="peopleTable" Grid.Row="1" Grid.Column="1">
+        <DataGrid ItemsSource="{Binding}" x:Name="peopleTable" Grid.Row="1" Grid.Column="1" IsReadOnly="True" AutoGenerateColumns="False" AlternatingRowBackground="#334169E1">
             <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding id}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="Age" Binding="{Binding age}"/>
                 <DataGridTemplateColumn Header="Actions">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="10,0">
                                 <Button x:Name="deletePersonButton" Click="deletePersonButton_Click" Padding="2">Delete</Button>
                                 <Button x:Name="editPersonButton" Click="editPersonButton_Click" Margin="10,0,0,0" Padding="2">Edit</Button>
                             </StackPanel>
